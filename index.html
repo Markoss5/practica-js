@@ -1,21 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
     <title>Ahorcado</title>
 </head>
 <body>
-    <h1>El ahorcado</h1>
+    <h1>Juego del Ahorcado</h1>
 
-    <!--Aca pongo el la palabra a ver si se adivina-->
-    <!--Aca pongo la cantidad de vidas-->
+    <!-- Este es el área donde mostramos la palabra oculta -->
+    <p id="palabra"></p>
+    
+    <!-- Input donde el usuario ingresa una letra -->
+    <input type="text" id="letra" maxlength="1" />
+    
+    <!-- Botón para enviar la letra -->
+    <button onclick="IngresarLetra()">Ingresar Letra</button>
 
-    <p>Agregar letra</p>
-    <input type="text" id="letra">
-    <button onclick="IngresarLetra()">Agregar</button>
+    <!-- Aquí mostramos las vidas restantes -->
+    <p id="vidas">Vidas restantes: 5</p>
 
+    <!-- Cargar el script de JavaScript -->
     <script src="script.js"></script>
 </body>
 </html>

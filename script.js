@@ -1,48 +1,52 @@
+const palabra = "Banfield";
+let palabraOculta = Array(palabra.length).fill("_");
+let CANT_VIDAS = 5;
 
-    let letra;
-    let palabraArray = [];
-    let CANT_VIDAS = 5;
+function MostrarLetras() {
+  let contenido = document.getElementById("palabra");
+  contenido.textContent = palabraOculta.join(" ");
+}
 
-    let palabra = "Banfield";
+function MostrarVidas() {
+  let vidas = document.getElementById("vidas");
+  vidas.textContent = "Vidas restantes: " + CANT_VIDAS;
+}
 
-    console.log()
+function IngresarLetra() {
+  let inputLetra = document.getElementById("letra").value.toLowerCase();
 
-    function MostrarLetras(){}
-    let contenido
+  if (inputLetra === "" || inputLetra.length > 1) {
+    alert("Por favor, ingresa una letra válida.");
+  } else {
+    ValidarLetra(inputLetra);
+  }
 
-    palabraArrayOutput = palabra.split("");
-        palabraArrayOutput.fill("_ ")
-    console.log(palabraArrayOutput)
+  document.getElementById("letra").value = "";
+}
 
+function ValidarLetra(letra) {
+  let letraEncontrada = false;
 
-    function IngresarLetra() {
-    let inputLetra = document.getElementById("letra").value;
-
-    if (inputLetra === "") {
-        alert("Por favor, ingresa una letra.");
-    } else {
-        letra = inputLetra;
+  palabra.split("").forEach((letraPalabra, index) => {
+    if (letraPalabra.toLowerCase() === letra) {
+      palabraOculta[index] = letraPalabra;
+      letraEncontrada = true;
     }
-    }
+  });
+  if (!letraEncontrada) {
+    CANT_VIDAS--;
+  }
+  if (CANT_VIDAS <= 0) {
+    alert("¡Perdiste! La palabra era: " + palabra);
+    return;
+  }
+  if (!palabraOculta.includes("_")) {
+    alert("¡Felicidades! Has adivinado la palabra: " + palabra);
+    return;
+  }
+  MostrarLetras();
+  MostrarVidas();
+}
 
-
-    function ValidarLetra(){
-
-    for(i = 0; i<palabra.length; i++){
-        //for recorre palabra
-        //por cada letra en palabra
-        //validar si la letra que ingresaste en input coincide con la letra de palabra
-        //si coincide, reemplazar ---- por la letra
-        //sino, preguntar nueva letra
-        if (palabra.indexOf(letra) -1)
-        {
-            console.log(palabra.indexOf(letra));
-        }
-    }
-    // function MostrarAhorcado(){
-
-    // }
-
-    // function MostrarVidas(){
-
-    // }
+MostrarLetras();
+MostrarVidas();
